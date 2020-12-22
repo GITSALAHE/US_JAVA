@@ -41,16 +41,16 @@ public class AssieteRondeController {
         String sqlString = "SELECT * FROM assietteronde"; // create the Sql query
         Statement stmt = us.configuration.connected().createStatement(); // prepare statement
         ResultSet res = stmt.executeQuery(sqlString);// excute the query after be prepared
-        String leftAlignFormat = "| %-15s | %-15s | %-15s | %-15s |%n";
+        String leftAlignFormat = "| %-15s | %-15s | %-15s | %-15s | %-15s |%n";
 
-        System.out.format("+-----------------+--------GESTION ASSIETTE RONDE-----+-----------------+%n");
-        System.out.format("|      id         |      Année      |      Valeur     |      Surface    |%n");
-        System.out.format("+-----------------+-----------------+-----------------+-----------------+%n");
+        System.out.format("+-----------------+--------------GESTION ASSIETTE RONDE-----------------------------------+%n");
+        System.out.format("|      id         |      Année      |   Valeur intial | Valeur calculer |     Longeur     |%n");
+        System.out.format("+-----------------+-----------------+-----------------+-----------------+-----------------+%n");
 
         while (res.next()) {
-            System.out.format(leftAlignFormat, res.getInt("id"), res.getInt("year"), us.calculValeur(res.getInt("year"), res.getDouble("valeur"), ""), calculSurfaceRonde(res.getDouble("rayon")));
+            System.out.format(leftAlignFormat, res.getInt("id"), res.getInt("year"), res.getInt("year"), us.calculValeur(res.getInt("year"), res.getDouble("valeur"), ""), calculSurfaceRonde(res.getDouble("rayon")));
         }
-        System.out.format("+-----------------+-----------------+-----------------+-----------------+%n");
+        System.out.format("+-----------------+-----------------+-----------------+-----------------+-----------------+%n");
 
     }
     

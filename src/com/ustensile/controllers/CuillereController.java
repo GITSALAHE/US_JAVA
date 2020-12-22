@@ -55,17 +55,17 @@ public class CuillereController {
         String sqlString = "SELECT * FROM cuillere"; // create the Sql query
         Statement stmt = us.configuration.connected().createStatement(); // prepare statement
         ResultSet res = stmt.executeQuery(sqlString);// excute the query after be prepared
-        String leftAlignFormat = "| %-15s | %-15s | %-15s | %-15s |%n";
+        String leftAlignFormat = "| %-15s | %-15s | %-15s | %-15s | %-15s |%n";
 
-        System.out.format("+-----------------+--------------GESTION CUILLERE-----------------------+%n");
-        System.out.format("|      id         |      Année      |      Valeur     |      Longeur    |%n");
-        System.out.format("+-----------------+-----------------+-----------------+-----------------+%n");
+        System.out.format("+-----------------+--------------GESTION CUILLERE-----------------------------------------+%n");
+        System.out.format("|      id         |      Année      |   Valeur intial | Valeur calculer |     Longeur     |%n");
+        System.out.format("+-----------------+-----------------+-----------------+-----------------+-----------------+%n");
 
 
         while (res.next()) {
-            System.out.format(leftAlignFormat, res.getInt("id"), res.getInt("year"), us.calculValeur(res.getInt("year"), res.getDouble("valeur"), ""), res.getDouble("longeur"));
+            System.out.format(leftAlignFormat, res.getInt("id"), res.getInt("year"), res.getDouble("valeur"), us.calculValeur(res.getInt("year"), res.getDouble("valeur"), ""), res.getDouble("longeur"));
         }
-        System.out.format("+-----------------+-----------------+-----------------+-----------------+%n");
+        System.out.format("+-----------------+-----------------+-----------------+-----------------+-----------------+%n");
 
     }
 }
